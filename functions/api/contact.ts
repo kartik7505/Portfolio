@@ -10,12 +10,11 @@ import {
 } from '../customerConfirmation.ts';
 import { customerMessageDarkHtml } from '../generated/customer-message-dark.ts';
 import { internalContactNotificationHtml } from '../generated/internal-contact-notification.ts';
+import { EMAIL_ASSET_URLS } from '../generated/email-asset-urls.ts';
 import {
     renderInternalNotificationMessageHtml,
     renderInternalNotificationText,
 } from '../internalNotification.ts';
-
-import { EMAIL_ATTACHMENTS, EMAIL_CID, type EmailAttachment } from '../emailAssets.ts';
 
 const MAX_BODY_BYTES = 16_384;
 const TURNSTILE_TOKEN_MAX_LENGTH = 2_048;
@@ -50,18 +49,18 @@ interface ResendEmail {
     text: string;
     html?: string;
     replyTo?: string;
-    attachments?: EmailAttachment[];
 }
 
 const renderCustomerConfirmationHtml = ({ name, message }: ContactMessage): string =>
     customerMessageDarkHtml
         .replace(/{{\s*firstName\s*}}/g, escapeHtml(getFirstName(name)))
         .replace(/{{\s*message\s*}}/g, renderCustomerConfirmationBodyHtml(message))
-        .replaceAll('{{assetMonogram}}', `cid:${EMAIL_CID.monogram}`)
-        .replaceAll('{{assetGlobe}}', `cid:${EMAIL_CID.globe}`)
-        .replaceAll('{{assetEmail}}', `cid:${EMAIL_CID.email}`)
-        .replaceAll('{{assetLinkedIn}}', `cid:${EMAIL_CID.linkedIn}`)
-        .replaceAll('{{assetLocation}}', `cid:${EMAIL_CID.location}`);
+        .replaceAll('{{assetMonogram}}', EMAIL_ASSET_URLS.monogram)
+        .replaceAll('{{assetGlobe}}', EMAIL_ASSET_URLS.globe)
+        .replaceAll('{{assetEmail}}', EMAIL_ASSET_URLS.email)
+        .replaceAll('{{assetLinkedIn}}', EMAIL_ASSET_URLS.linkedIn)
+        .replaceAll('{{assetLocation}}', EMAIL_ASSET_URLS.location)
+        .replaceAll('{{assetWave}}', EMAIL_ASSET_URLS.wave);
 
 const renderInternalNotificationHtml = ({ name, email, message }: ContactMessage): string =>
     internalContactNotificationHtml
@@ -164,7 +163,7 @@ const createEmails = (
             from: sender,
             to: [recipient],
             replyTo: message.email,
-            subject: 'Project inquiry via nowakkamil.com',
+            subject: 'New Project Inquiry via Portfolio',
             text: renderInternalNotificationText(message),
             html: renderInternalNotificationHtml(message),
         },
@@ -175,10 +174,9 @@ const createEmails = (
               from: sender,
               to: [message.email],
               replyTo: recipient,
-              subject: 'nowakkamil.com — Your message has been received',
+              subject: 'Kartik Kumar — Your message has been received',
               text: renderCustomerConfirmationText(message.message),
               html: renderCustomerConfirmationHtml(message),
-              attachments: [...EMAIL_ATTACHMENTS],
           }
         : null;
 

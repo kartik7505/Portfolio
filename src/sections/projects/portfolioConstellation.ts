@@ -261,7 +261,7 @@ export class PortfolioConstellation {
         }
 
         const motionScale = this.responsiveConfig.constellation.motionScale;
-        this.group.rotation.y = Math.sin(elapsed * 0.035) * 0.05 * motionScale;
+        this.group.rotation.y = Math.sin(elapsed * 0.07 + 2.9) * 0.05 * motionScale;
         this.group.rotation.x = Math.sin(elapsed * 0.045 + 1.3) * 0.03 * motionScale;
         this.group.rotation.z = Math.sin(elapsed * 0.025 + 0.5) * 0.015 * motionScale;
     }
@@ -901,7 +901,7 @@ export class PortfolioConstellation {
             side: THREE.DoubleSide,
         });
         const labelSprite = new THREE.Mesh(this.planeGeometry, labelMaterial);
-        const authoredLabelScale = this.responsiveConfig.isMobile ? 2.08 : 2.62;
+        const authoredLabelScale = this.responsiveConfig.isMobile ? 2.22 : 2.80;
         const labelScale = authoredLabelScale * this.responsiveConfig.constellation.labelScale;
         const labelRowY = 0.3 - (this.responsiveConfig.isMobile ? 3.25 : 4.25);
         const labelRowZ = -3.12;
@@ -937,9 +937,9 @@ export class PortfolioConstellation {
         }
 
         const mobile = this.responsiveConfig.isMobile;
-        const authoredLabelScale = mobile ? 1.66 : 2.06;
+        const authoredLabelScale = mobile ? 1.90 : 2.36;
         const labelScale = authoredLabelScale * this.responsiveConfig.constellation.labelScale;
-        const labelOffset = mobile ? 0.56 : 0.7;
+        const labelOffset = mobile ? 0.60 : 0.75;
         const starPositions = projectStars.map(
             (projectStar) => projectStar.entity.userData.basePosition as THREE.Vector3,
         );

@@ -2,97 +2,167 @@
     <mj-head>
         <mj-title>New inquiry — nowakkamil.com</mj-title>
         <mj-preview>New portfolio inquiry from {{ customerName }}</mj-preview>
-
         <mj-attributes>
             <mj-all
                 font-family="'Avenir Next', Avenir, 'Segoe UI', Helvetica, sans-serif"
                 font-weight="400"
             />
-            <mj-text color="#d9dee5" font-size="15px" line-height="26px" />
+            <mj-text color="#dce6f2" font-size="19px" line-height="32px" />
             <mj-section padding="0" />
             <mj-column padding="0" />
         </mj-attributes>
-
         <mj-style inline="inline">
             body {
                 overflow-x: hidden !important;
             }
-
             .inquiry-surface {
                 width: 100% !important;
                 box-sizing: border-box !important;
-                background-color: #02050a !important;
+                border: 0 !important;
+                border-radius: 12px !important;
+                background-color: #00040e !important;
+                background-clip: padding-box !important;
+                overflow: hidden !important;
             }
-
             .inquiry-surface > table {
                 width: 100% !important;
                 table-layout: fixed !important;
-                background-color: #02050a !important;
+                background-color: #00040e !important;
+                border-collapse: separate !important;
+                border-spacing: 0 !important;
+                border-radius: 11px !important;
+                overflow: hidden !important;
             }
-
+            .header-rule {
+                background-image: linear-gradient(90deg, #7f9cbc 0%, #56698c 42%, #2b3652 100%);
+            }
             .inquiry-email a {
-                color: #159bb0 !important;
+                color: #53a4ff !important;
                 text-decoration: none !important;
-                -webkit-text-fill-color: #159bb0 !important;
+                -webkit-text-fill-color: #53a4ff !important;
             }
         </mj-style>
-
         <mj-style>
+            /* This email is dark in every theme. Telling the client so stops
+               Apple Mail and Outlook from re-tinting it in either direction. */
+            :root {
+                color-scheme: dark;
+                supported-color-schemes: dark;
+            }
+            /* Outlook.com rewrites colours in dark mode and exposes these hooks
+               so the original palette can be restored. */
+            [data-ogsc] .email-canvas {
+                background-color: #00030c !important;
+            }
+            [data-ogsc] .inquiry-surface,
+            [data-ogsc] .inquiry-surface > table {
+                background-color: #00040e !important;
+            }
+            [data-ogsc] .inquiry-quote {
+                color: #f2f6fb !important;
+            }
+            [data-ogsc] .inquiry-quote-panel {
+                background-color: #020a17 !important;
+            }
+            [data-ogsc] .inquiry-quote-accent {
+                background-color: #63acf5 !important;
+            }
+            [data-ogsc] .inquiry-email a {
+                color: #53a4ff !important;
+                -webkit-text-fill-color: #53a4ff !important;
+            }
+            @media only screen and (max-width: 600px) {
+                .inquiry-eyebrow {
+                    font-size: 12px !important;
+                }
+                .inquiry-domain {
+                    font-size: 11px !important;
+                    letter-spacing: 2px !important;
+                }
+                .inquiry-name div {
+                    font-size: 38px !important;
+                    line-height: 46px !important;
+                }
+                .inquiry-email div {
+                    font-size: 14px !important;
+                    line-height: 24px !important;
+                }
+                .inquiry-message-label div {
+                    font-size: 12px !important;
+                }
+            }
             @media only screen and (max-width: 480px) {
                 .mobile-gutter {
                     padding-left: 24px !important;
                     padding-right: 24px !important;
                 }
-
+                .inquiry-quote {
+                    padding: 18px 16px !important;
+                    font-size: 17px !important;
+                    line-height: 28px !important;
+                }
                 .inquiry-name {
-                    padding-top: 24px !important;
-                    font-size: 24px !important;
-                    line-height: 30px !important;
+                    padding-top: 30px !important;
+                }
+                .inquiry-name div {
+                    font-size: 33px !important;
+                    line-height: 40px !important;
                 }
             }
         </mj-style>
-
-        <mj-raw>
-            <meta name="color-scheme" content="dark" /> <meta name="supported-color-schemes"
-            content="dark" />
-        </mj-raw>
+        <mj-raw
+            ><meta name="color-scheme" content="dark" /> <meta name="supported-color-schemes"
+            content="dark" /></mj-raw
+        >
     </mj-head>
-
-    <mj-body width="632px" background-color="#03070d">
-        <mj-section padding="20px 16px" background-color="#03070d">
-            <mj-column css-class="inquiry-surface" background-color="#02050a" padding="0">
+    <mj-body width="680px" background-color="#00030c">
+        <mj-section
+            css-class="email-canvas"
+            full-width="full-width"
+            padding="14px"
+            background-color="#00030c"
+        >
+            <mj-column
+                css-class="inquiry-surface"
+                background-color="#00040e"
+                border="none"
+                border-radius="12px"
+                padding="0"
+            >
                 <mj-table
                     css-class="mobile-gutter"
                     cellpadding="0"
                     cellspacing="0"
-                    padding="28px 36px 0"
+                    padding="38px 44px 0"
                     width="100%"
                 >
                     <tr>
                         <td
+                            class="inquiry-eyebrow"
                             width="50%"
                             style="
-                                padding: 0 18px 10px 0;
-                                color: #f2f5f8;
-                                font-size: 11px;
-                                font-weight: 400;
-                                letter-spacing: 2px;
-                                line-height: 16px;
+                                padding: 0 18px 15px 0;
+                                color: #b9dcff;
+                                font-size: 14px;
+                                font-weight: 600;
+                                letter-spacing: 3px;
+                                line-height: 20px;
                                 text-transform: uppercase;
                             "
                         >
                             New inquiry
                         </td>
                         <td
+                            class="inquiry-domain"
                             align="right"
                             width="50%"
                             style="
-                                padding: 0 0 10px;
-                                color: #8f98a5;
-                                font-size: 10px;
-                                font-weight: 400;
-                                letter-spacing: 1.4px;
-                                line-height: 16px;
+                                padding: 0 0 15px;
+                                color: #eef5fd;
+                                font-size: 12px;
+                                font-weight: 500;
+                                letter-spacing: 2.4px;
+                                line-height: 20px;
                                 text-transform: uppercase;
                             "
                         >
@@ -101,11 +171,13 @@
                     </tr>
                     <tr>
                         <td
+                            class="header-rule"
                             colspan="2"
-                            bgcolor="#2b3541"
+                            bgcolor="#4f6787"
                             height="1"
                             style="
                                 height: 1px;
+                                background-color: #4f6787;
                                 font-size: 0;
                                 line-height: 0;
                                 mso-line-height-rule: exactly;
@@ -115,76 +187,104 @@
                         </td>
                     </tr>
                 </mj-table>
-
                 <mj-text
                     css-class="mobile-gutter inquiry-name"
-                    color="#f2f5f8"
-                    font-size="28px"
-                    font-weight="400"
-                    letter-spacing="-0.5px"
-                    line-height="34px"
-                    padding="32px 36px 2px"
+                    color="#f6f8fb"
+                    font-size="42px"
+                    font-weight="700"
+                    letter-spacing="-0.9px"
+                    line-height="50px"
+                    padding="40px 44px 6px"
+                    >{{ customerName }}</mj-text
                 >
-                    {{ customerName }}
-                </mj-text>
-
                 <mj-text
                     css-class="mobile-gutter inquiry-email"
-                    color="#159bb0"
-                    font-size="13px"
-                    font-weight="400"
-                    line-height="20px"
-                    padding="0 36px 26px"
+                    color="#53a4ff"
+                    font-size="16px"
+                    font-weight="500"
+                    line-height="26px"
+                    padding="0 44px 32px"
+                    ><a href="mailto:{{ customerEmail }}">{{ customerEmail }}</a></mj-text
                 >
-                    <a href="mailto:{{ customerEmail }}">{{ customerEmail }}</a>
-                </mj-text>
-
                 <mj-text
-                    css-class="mobile-gutter"
-                    color="#8f98a5"
-                    font-size="10px"
-                    font-weight="400"
-                    letter-spacing="1.5px"
-                    line-height="16px"
-                    padding="0 36px 10px"
+                    css-class="mobile-gutter inquiry-message-label"
+                    color="#b9dcff"
+                    font-size="13px"
+                    font-weight="600"
+                    letter-spacing="2.4px"
+                    line-height="20px"
+                    padding="0 44px 14px"
                     text-transform="uppercase"
+                    >Message</mj-text
                 >
-                    Message
-                </mj-text>
-
                 <mj-table
                     css-class="mobile-gutter"
                     cellpadding="0"
                     cellspacing="0"
-                    padding="0 36px 34px"
+                    padding="0 44px 44px"
                     width="100%"
                 >
                     <tr>
                         <td
-                            width="2"
-                            bgcolor="#159bb0"
+                            bgcolor="#14355a"
                             style="
-                                width: 2px;
-                                padding: 0;
-                                background-color: #159bb0;
+                                padding: 1px;
+                                border: 0;
+                                border-radius: 6px;
+                                background-color: #14355a;
                                 font-size: 0;
                                 line-height: 0;
                             "
                         >
-                            &nbsp;
-                        </td>
-                        <td
-                            bgcolor="#050c14"
-                            style="
-                                padding: 14px 16px;
-                                background-color: #050c14;
-                                color: #dfe6ed;
-                                font-size: 15px;
-                                font-weight: 400;
-                                line-height: 25px;
-                            "
-                        >
-                            {{ message }}
+                            <table
+                                class="inquiry-quote-panel"
+                                role="presentation"
+                                cellpadding="0"
+                                cellspacing="0"
+                                border="0"
+                                width="100%"
+                                bgcolor="#020a17"
+                                style="
+                                    width: 100%;
+                                    border: 0;
+                                    border-radius: 5px;
+                                    background-color: #020a17;
+                                    border-collapse: collapse;
+                                    table-layout: fixed;
+                                "
+                            >
+                                <tr>
+                                    <td
+                                        class="inquiry-quote-accent"
+                                        width="2"
+                                        bgcolor="#63acf5"
+                                        style="
+                                            width: 2px;
+                                            padding: 0;
+                                            background-color: #63acf5;
+                                            font-size: 0;
+                                            line-height: 0;
+                                        "
+                                    >
+                                        &nbsp;
+                                    </td>
+                                    <td
+                                        class="inquiry-quote"
+                                        style="
+                                            padding: 29px;
+                                            color: #f2f6fb;
+                                            font-size: 18px;
+                                            font-weight: 400;
+                                            line-height: 30px;
+                                            overflow-wrap: anywhere;
+                                            word-break: break-word;
+                                            word-wrap: break-word;
+                                        "
+                                    >
+                                        {{ message }}
+                                    </td>
+                                </tr>
+                            </table>
                         </td>
                     </tr>
                 </mj-table>

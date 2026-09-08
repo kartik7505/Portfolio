@@ -4,9 +4,9 @@ import { createHttpContactSubmissionService } from './httpContactSubmissionServi
 
 const TURNSTILE_SCRIPT_URL =
     'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
-const TURNSTILE_STARTUP_TIMEOUT_MS = 8_000;
 const TURNSTILE_SUBMISSION_TIMEOUT_MS = 15_000;
 const TURNSTILE_TOKEN_MAX_AGE_MS = 270_000;
+const VERIFICATION_SUCCESS_DISPLAY_MS = 850;
 
 interface TurnstileApi {
     render(
@@ -115,7 +115,10 @@ const waitWithTimeout = async <T>(
     }
 };
 
-const createTurnstileController = (container: HTMLElement) => {
+export const createTurnstileController = (
+    container: HTMLElement,
+    sitekey = import.meta.env.VITE_TURNSTILE_SITE_KEY?.trim(),
+) => {
     let token = '';
     let tokenIssuedAt = 0;
     let widget: { api: TurnstileApi; id: string } | undefined;
@@ -125,7 +128,6 @@ const createTurnstileController = (container: HTMLElement) => {
     let widgetGeneration = 0;
     let needsReset = false;
     let suspended = false;
-    const sitekey = import.meta.env.VITE_TURNSTILE_SITE_KEY?.trim();
     const clearToken = (): void => {
         token = '';
         tokenIssuedAt = 0;
@@ -269,20 +271,21 @@ const createTurnstileController = (container: HTMLElement) => {
     };
 
     return {
-        prepareForStartup: async (): Promise<void> => {
+        initialize: (): void => {
+            suspended = false;
+            void initializeWidget();
+        },
+        getTokenForSubmission: async (): Promise<string> => {
             suspended = false;
             const responseToken = await waitWithTimeout(
                 requestToken(),
-                TURNSTILE_STARTUP_TIMEOUT_MS,
+                TURNSTILE_SUBMISSION_TIMEOUT_MS,
                 '',
             );
             if (!responseToken) {
                 suspend();
             }
-        },
-        getTokenForSubmission: async (): Promise<string> => {
-            suspended = false;
-            return waitWithTimeout(requestToken(), TURNSTILE_SUBMISSION_TIMEOUT_MS, '');
+            return responseToken;
         },
         reset: (): void => {
             clearToken();
@@ -355,13 +358,17 @@ interface ContactFormState {
     status: ContactFormStatus;
 }
 
-export const initContactForm = async (): Promise<void> => {
+export const initContactForm = (): void => {
     const form = document.querySelector<HTMLFormElement>('[data-contact-form]');
     const statusRegion = form?.querySelector<HTMLElement>('[data-contact-form-status]');
     const nameControl = form?.elements.namedItem('name');
     const emailControl = form?.elements.namedItem('email');
     const messageControl = form?.elements.namedItem('message');
     const honeypotControl = form?.elements.namedItem('website');
+    const verificationPopup = form?.querySelector<HTMLElement>('[data-contact-verification]');
+    const verificationStatus = verificationPopup?.querySelector<HTMLElement>(
+        '[data-contact-verification-status]',
+    );
     const turnstileContainer = form?.querySelector<HTMLElement>('[data-turnstile]');
     const nameError = form?.querySelector<HTMLElement>('[data-field-error="name"]');
     const emailError = form?.querySelector<HTMLElement>('[data-field-error="email"]');
@@ -379,6 +386,8 @@ export const initContactForm = async (): Promise<void> => {
         !(emailControl instanceof HTMLInputElement) ||
         !(messageControl instanceof HTMLTextAreaElement) ||
         !(honeypotControl instanceof HTMLInputElement) ||
+        !verificationPopup ||
+        !verificationStatus ||
         !turnstileContainer ||
         !nameError ||
         !emailError ||
@@ -418,6 +427,7 @@ export const initContactForm = async (): Promise<void> => {
         form.dataset.contactEndpoint || undefined,
     );
     const turnstile = createTurnstileController(turnstileContainer);
+    turnstile.initialize();
 
     const revealPrivacyNotice = (): void => {
         form.dataset.messageInteracted = 'true';
@@ -428,6 +438,31 @@ export const initContactForm = async (): Promise<void> => {
         revealPrivacyNotice();
     }
     messageControl.addEventListener('focus', revealPrivacyNotice, { once: true });
+
+    const openVerificationPopup = (): void => {
+        verificationPopup.dataset.state = 'verifying';
+        verificationStatus.textContent = 'Verifying your message…';
+        verificationPopup.inert = false;
+        verificationPopup.setAttribute('aria-hidden', 'false');
+    };
+
+    const setVerificationSending = (): void => {
+        verificationPopup.dataset.state = 'sending';
+        verificationStatus.textContent = 'Sending your message…';
+    };
+
+    const showVerificationSuccess = async (): Promise<void> => {
+        verificationPopup.dataset.state = 'success';
+        verificationStatus.textContent = 'Message sent';
+        await new Promise<void>((resolve) => {
+            window.setTimeout(resolve, VERIFICATION_SUCCESS_DISPLAY_MS);
+        });
+    };
+
+    const closeVerificationPopup = (): void => {
+        verificationPopup.setAttribute('aria-hidden', 'true');
+        verificationPopup.inert = true;
+    };
 
     const setSubmitting = (submitting: boolean): void => {
         submitButton.disabled = submitting;
@@ -578,21 +613,32 @@ export const initContactForm = async (): Promise<void> => {
             return;
         }
 
+        openVerificationPopup();
         setFormStatus('submitting');
 
         try {
             const turnstileToken = await turnstile.getTokenForSubmission();
+            if (!turnstileToken) {
+                turnstile.reset();
+                setFormStatus('server-failure');
+                return;
+            }
+
+            setVerificationSending();
             const result = await submissionService.submit(message, {
                 turnstileToken,
                 website: honeypotControl.value,
             });
             turnstile.reset();
+            if (result.kind === 'success') {
+                await showVerificationSuccess();
+            }
             handleSubmissionResult(result);
         } catch {
             turnstile.reset();
             setFormStatus('server-failure');
+        } finally {
+            closeVerificationPopup();
         }
     });
-
-    await turnstile.prepareForStartup();
 };

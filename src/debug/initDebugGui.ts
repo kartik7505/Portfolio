@@ -233,5 +233,7 @@ export const initDebugGui = ({
         group.close(),
     );
 
+    gui.hide();
+
     return gui;
 };

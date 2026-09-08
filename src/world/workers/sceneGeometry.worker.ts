@@ -65,7 +65,7 @@ workerScope.onmessage = (event) => {
                 start: getFloatAttribute(floatingGeometry, 'aStart'),
             };
             const shapeTargets: Record<SceneMorphTargetKey, Float32Array> = {
-                name: createTextMorphPositions(regularFont, 'KAMIL NOWAK', cloudPositions),
+                name: createTextMorphPositions(regularFont, 'KARTIK KUMAR', cloudPositions),
                 experience: createTextMorphPositions(regularFont, 'EXPERIENCE', cloudPositions),
                 education: createTextMorphPositions(regularFont, 'EDUCATION', cloudPositions),
                 projects: createTextMorphPositions(regularFont, 'PROJECTS', cloudPositions),

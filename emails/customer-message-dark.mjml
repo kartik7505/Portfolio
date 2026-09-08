@@ -2,107 +2,123 @@
     <mj-head>
         <mj-title>Kamil Nowak — Customer message</mj-title>
         <mj-preview>A personal note from Kamil Nowak about your message.</mj-preview>
-
         <mj-attributes>
             <mj-all
                 font-family="'Avenir Next', Avenir, 'Segoe UI', Helvetica, sans-serif"
                 font-weight="400"
             />
-            <mj-text color="#d9dee5" font-size="15px" line-height="26px" />
+            <mj-text color="#dce6f2" font-size="19px" line-height="32px" />
             <mj-section padding="0" />
             <mj-column padding="0" />
         </mj-attributes>
-
         <mj-style inline="inline">
             body {
                 overflow-x: hidden !important;
             }
-
             .contact-surface {
                 width: 100% !important;
                 box-sizing: border-box !important;
-                background-color: #02050a !important;
+                border: 0 !important;
+                border-radius: 12px !important;
+                background-color: #00040e !important;
+                background-clip: padding-box !important;
+                overflow: hidden !important;
             }
-
             .contact-surface > table {
                 width: 100% !important;
                 table-layout: fixed !important;
-                background-color: #02050a !important;
+                background-color: #00040e !important;
+                border-collapse: separate !important;
+                border-spacing: 0 !important;
+                border-radius: 11px !important;
+                overflow: hidden !important;
             }
-
             .message-copy p {
                 margin-top: 0;
             }
-
-            .message-copy blockquote {
-                border-left-color: #159bb0 !important;
-                background-color: #050c14 !important;
-                color: #dfe6ed !important;
-                font-style: normal !important;
-                font-weight: 400 !important;
+            .header-rule {
+                background-image: linear-gradient(90deg, #7f9cbc 0%, #56698c 42%, #2b3652 100%);
             }
-
             .portfolio-link a,
             .email-signature a {
-                color: #d9dee5 !important;
+                color: #eef5fd !important;
                 text-decoration: none !important;
-                -webkit-text-fill-color: #d9dee5 !important;
+                -webkit-text-fill-color: #eef5fd !important;
             }
         </mj-style>
-
-        <mj-style>
-            /* SIGNATURE_STYLES */
-
-            .email-signature > table {
-                width: 100% !important;
-                max-width: 100% !important;
-            }
-
-            @media only screen and (max-width: 480px) {
-                .mobile-gutter {
-                    padding-left: 24px !important;
-                    padding-right: 24px !important;
-                }
-
-                .email-greeting {
-                    padding-top: 24px !important;
-                    font-size: 26px !important;
-                }
-
-                .email-signature .kn-email-signature-frame {
-                    padding: 24px !important;
-                }
-            }
-        </mj-style>
-
         <mj-raw>
-            <meta name="color-scheme" content="dark" /> <meta name="supported-color-schemes"
-            content="dark" />
+            <style type="text/css"> /* SIGNATURE_STYLES */ </style> <style type="text/css">
+            .email-signature > table { width: 100% !important; max-width: 100% !important; } @media
+            only screen and (max-width: 600px) { .email-eyebrow { font-size: 12px !important; }
+            .portfolio-link { font-size: 11px !important; letter-spacing: 2px !important; }
+            .email-greeting div { font-size: 40px !important; line-height: 48px !important; }
+            .message-copy p { font-size: 17px !important; line-height: 28px !important; } } @media
+            only screen and (max-width: 480px) { .mobile-gutter { padding-left: 24px !important;
+            padding-right: 24px !important; } .email-greeting { padding-top: 32px !important; }
+            .email-greeting div { font-size: 36px !important; line-height: 44px !important; } /*
+            Outranks the signature's own rule, so it has to restate the percentage that keeps the
+            wave below the last contact row. */ .email-signature .kn-email-signature-frame {
+            padding-top: 26px !important; padding-left: 24px !important; padding-right: 24px
+            !important; } .message-quote-accent { display: block !important; width: 100% !important;
+            height: 2px !important; } .message-quote-opening { display: block !important; width:
+            auto !important; padding: 24px 0 14px 18px !important; font-size: 38px !important;
+            line-height: 34px !important; } .message-quote-content { display: block !important;
+            padding: 10px 16px !important; font-size: 17px !important; line-height: 28px !important;
+            } .message-quote-closing { display: block !important; width: auto !important; padding:
+            14px 18px 24px 0 !important; font-size: 38px !important; line-height: 34px !important; }
+            } </style> <style type="text/css"> /* This email is dark in every theme. Telling the
+            client so stops Apple Mail and Outlook from re-tinting it in either direction. */ :root
+            { color-scheme: dark; supported-color-schemes: dark; } /* Outlook.com rewrites colours
+            in dark mode and exposes these hooks so the original palette can be restored. */
+            [data-ogsc] .email-canvas { background-color: #00030c !important; } [data-ogsc]
+            .contact-surface, [data-ogsc] .contact-surface > table, [data-ogsc] .email-signature >
+            table, [data-ogsc] .kn-email-signature-frame { background-color: #00040e !important; }
+            [data-ogsc] .email-greeting { color: #f6f8fb !important; } [data-ogsc] .message-copy,
+            [data-ogsc] .message-copy p { color: #dce6f2 !important; } [data-ogsc]
+            .message-quote-content { color: #f2f6fb !important; } [data-ogsc] .message-quote {
+            background-color: #14355a !important; } [data-ogsc] .message-quote-panel {
+            background-color: #020a17 !important; } [data-ogsc] .message-quote-accent {
+            background-color: #63acf5 !important; } [data-ogsc] .portfolio-link a, [data-ogsc]
+            .email-signature a, [data-ogsc] .kn-email-signature-contact-row td { color: #eef5fd
+            !important; -webkit-text-fill-color: #eef5fd !important; } </style>
         </mj-raw>
+        <mj-raw
+            ><meta name="color-scheme" content="dark" /> <meta name="supported-color-schemes"
+            content="dark" /></mj-raw
+        >
     </mj-head>
-
-    <mj-body width="632px" background-color="#03070d">
-        <mj-section padding="20px 16px" background-color="#03070d">
-            <mj-column css-class="contact-surface" background-color="#02050a" padding="0">
+    <mj-body width="680px" background-color="#00030c">
+        <mj-section
+            css-class="email-canvas"
+            full-width="full-width"
+            padding="14px"
+            background-color="#00030c"
+        >
+            <mj-column
+                css-class="contact-surface"
+                background-color="#00040e"
+                border="none"
+                border-radius="12px"
+                padding="0"
+            >
                 <mj-table
                     css-class="mobile-gutter"
                     cellpadding="0"
                     cellspacing="0"
-                    padding="28px 36px 0"
+                    padding="38px 44px 0"
                     width="100%"
                 >
                     <tr>
                         <td
+                            class="email-eyebrow"
                             width="50%"
                             style="
-                                padding: 0 18px 10px 0;
-                                color: #f2f5f8;
-                                font-family:
-                                    'Avenir Next', Avenir, 'Segoe UI', Helvetica, sans-serif;
-                                font-size: 11px;
-                                font-weight: 400;
-                                letter-spacing: 2px;
-                                line-height: 16px;
+                                padding: 0 18px 15px 0;
+                                color: #b9dcff;
+                                font-size: 14px;
+                                font-weight: 600;
+                                letter-spacing: 3px;
+                                line-height: 20px;
                                 text-transform: uppercase;
                             "
                         >
@@ -113,14 +129,12 @@
                             align="right"
                             width="50%"
                             style="
-                                padding: 0 0 10px;
-                                color: #8f98a5;
-                                font-family:
-                                    'Avenir Next', Avenir, 'Segoe UI', Helvetica, sans-serif;
-                                font-size: 10px;
-                                font-weight: 400;
-                                letter-spacing: 1.4px;
-                                line-height: 16px;
+                                padding: 0 0 15px;
+                                color: #eef5fd;
+                                font-size: 12px;
+                                font-weight: 500;
+                                letter-spacing: 2.4px;
+                                line-height: 20px;
                                 text-transform: uppercase;
                             "
                         >
@@ -129,53 +143,13 @@
                     </tr>
                     <tr>
                         <td
+                            class="header-rule"
                             colspan="2"
-                            bgcolor="#2b3541"
-                            height="1"
-                            style="font-size: 0; line-height: 0"
-                        >
-                            &nbsp;
-                        </td>
-                    </tr>
-                </mj-table>
-
-                <mj-text
-                    css-class="mobile-gutter email-greeting"
-                    color="#f2f5f8"
-                    font-size="28px"
-                    font-weight="400"
-                    letter-spacing="-0.6px"
-                    line-height="34px"
-                    padding="32px 36px 8px"
-                >
-                    Hi {{ firstName }},
-                </mj-text>
-
-                <mj-text
-                    css-class="mobile-gutter message-copy"
-                    color="#cdd3da"
-                    font-size="15px"
-                    font-weight="400"
-                    line-height="26px"
-                    padding="8px 36px 32px"
-                >
-                    {{ message }}
-                </mj-text>
-                <mj-table
-                    css-class="mobile-gutter"
-                    cellpadding="0"
-                    cellspacing="0"
-                    padding="0 36px"
-                    width="100%"
-                >
-                    <tr>
-                        <td
-                            colspan="2"
-                            bgcolor="#161f29"
+                            bgcolor="#4f6787"
                             height="1"
                             style="
                                 height: 1px;
-                                background-color: #161f29;
+                                background-color: #4f6787;
                                 font-size: 0;
                                 line-height: 0;
                                 mso-line-height-rule: exactly;
@@ -185,15 +159,55 @@
                         </td>
                     </tr>
                 </mj-table>
-                <mj-table cellpadding="0" cellspacing="0" padding="0" width="100%">
+                <mj-text
+                    css-class="mobile-gutter email-greeting"
+                    color="#f6f8fb"
+                    font-size="46px"
+                    font-weight="500"
+                    letter-spacing="-1px"
+                    line-height="54px"
+                    padding="40px 44px 12px"
+                    >Hi {{ firstName }},</mj-text
+                >
+                <mj-text
+                    css-class="mobile-gutter message-copy"
+                    color="#dce6f2"
+                    font-size="19px"
+                    font-weight="400"
+                    line-height="32px"
+                    padding="0 44px 21px"
+                    >{{ message }}</mj-text
+                >
+                <mj-table
+                    css-class="mobile-gutter"
+                    cellpadding="0"
+                    cellspacing="0"
+                    padding="0 44px"
+                    width="100%"
+                >
                     <tr>
-                        <td style="padding: 0">
-                            <div class="email-signature">
-                                <!-- SIGNATURE_HTML -->
-                            </div>
+                        <td
+                            bgcolor="#1a2238"
+                            height="1"
+                            style="
+                                height: 1px;
+                                background-color: #1a2238;
+                                font-size: 0;
+                                line-height: 0;
+                                mso-line-height-rule: exactly;
+                            "
+                        >
+                            &nbsp;
                         </td>
                     </tr>
                 </mj-table>
+                <mj-table cellpadding="0" cellspacing="0" padding="0" width="100%"
+                    ><tr>
+                        <td style="padding: 0">
+                            <div class="email-signature"><!-- SIGNATURE_HTML --></div>
+                        </td>
+                    </tr></mj-table
+                >
             </mj-column>
         </mj-section>
     </mj-body>
