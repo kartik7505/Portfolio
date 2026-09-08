@@ -1,5 +1,5 @@
 export const initSoundControls = (
-    setCursorCueVisibility: (visibility: number) => void = () => {},
+    _setCursorCueVisibility: (visibility: number) => void = () => {},
 ) => {
     return { updateCursorLabel: () => {} };
 };
