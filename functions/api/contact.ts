@@ -163,7 +163,7 @@ const createEmails = (
             from: sender,
             to: [recipient],
             replyTo: message.email,
-            subject: 'Project inquiry via nowakkamil.com',
+            subject: 'New Project Inquiry via Portfolio',
             text: renderInternalNotificationText(message),
             html: renderInternalNotificationHtml(message),
         },
@@ -174,7 +174,7 @@ const createEmails = (
               from: sender,
               to: [message.email],
               replyTo: recipient,
-              subject: 'nowakkamil.com — Your message has been received',
+              subject: 'Kartik Kumar — Your message has been received',
               text: renderCustomerConfirmationText(message.message),
               html: renderCustomerConfirmationHtml(message),
           }

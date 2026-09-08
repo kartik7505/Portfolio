@@ -25,7 +25,7 @@ Open `signature.preview.html` in a browser to review the generated signature.
 The monogram sits beside the text only while the card is at its full width; at
 anything narrower the two stack. Which way round that default runs is the whole
 design of this file, because **Gmail drops the `<style>` block** — its mobile app
-was once rendering the text one character per line as a result. Anything the
+was once rendering the text one character per line as a result. Anything thehttp://localhost:8000/
 phone layout needs therefore has to hold with no CSS at all.
 
 So the inline styles describe the _stacked_ layout, and `@media (min-width: 789px)`

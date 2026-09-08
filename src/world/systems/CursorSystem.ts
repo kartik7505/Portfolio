@@ -141,7 +141,7 @@ export class CursorSystem {
 
         this.createCursor();
         this.projectCueSprite = this.createCueSprite('✦', 'Select a project star to learn more');
-        this.soundCueSprite = this.createCueSprite('♫', 'Click to enable sound');
+
         // Scroll-cue geometry is created lazily on first reveal to keep it
         // out of the startup / TBT critical path (see ensureScrollCueInitialized).
         this.resize();
