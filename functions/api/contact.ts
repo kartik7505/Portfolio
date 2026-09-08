@@ -86,7 +86,9 @@ const readServerConfig = (env: Env): ContactServerConfig | undefined => {
     const apiKey = env.RESEND_API_KEY?.trim();
     const sender = env.CONTACT_SENDER?.trim();
     const turnstileSecretKey = env.TURNSTILE_SECRET_KEY?.trim();
-    const recipientResult = contactSchema.shape.email.safeParse(env.CONTACT_RECIPIENT);
+    const recipientResult = contactSchema.shape.email.safeParse(
+        env.CONTACT_RECIPIENT ?? 'kartikk7505@gmail.com'
+    );
     const senderEmail = sender?.match(/<([^<>]+)>$/)?.[1] ?? sender;
 
     if (
