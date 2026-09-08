@@ -480,6 +480,8 @@ body:has(.contact-tabs:not([aria-hidden='true'])) .nav__link-wrapper-container::
 }
 
 .contact-form {
+    padding-bottom: 4rem;
+
     &__status {
         min-height: 1rem;
         margin-top: 0.6rem;
