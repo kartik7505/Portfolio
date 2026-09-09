@@ -6,6 +6,7 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
+        "dev:functions": "wrangler pages dev --proxy 5173 -- vite",
         "build": "npm run typecheck && vite build && npm run seo:check",
         "email:build": "node scripts/build-email.mjs",
         "preview": "vite preview",
@@ -40,6 +41,7 @@
         "stylelint-config-standard-scss": "17.0.0",
         "typescript": "7.0.2",
         "vite": "8.2.1",
-        "vite-plugin-glsl": "1.6.0"
+        "vite-plugin-glsl": "1.6.0",
+        "wrangler": "4.130.0"
     }
 }

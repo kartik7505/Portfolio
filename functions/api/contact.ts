@@ -238,11 +238,19 @@ export const onRequestPost = async ({
 
     const contactRequest = readContactRequest(body);
     if (contactRequest instanceof Response) {
+        console.error("Invalid contact request:", contactRequest.status);
         return contactRequest;
     }
 
     const config = readServerConfig(env);
     if (!config) {
+        console.error("Server config is invalid or missing.", JSON.stringify({
+            hasApiKey: !!env.RESEND_API_KEY,
+            sender: env.CONTACT_SENDER,
+            hasTurnstileSecret: !!env.TURNSTILE_SECRET_KEY,
+            recipient: env.CONTACT_RECIPIENT,
+            sendVisitorConfirmation: env.SEND_VISITOR_CONFIRMATION
+        }));
         return errorResponse(500);
     }
 
@@ -255,10 +263,12 @@ export const onRequestPost = async ({
     );
 
     if (turnstileResult === 'rejected') {
+        console.error("Turnstile rejected the token.");
         return errorResponse(400);
     }
 
     if (turnstileResult === 'unavailable') {
+        console.error("Turnstile verification is unavailable.");
         return errorResponse(502);
     }
 
@@ -284,9 +294,11 @@ export const onRequestPost = async ({
         const results = await Promise.all(requests);
 
         if (results.some(({ error }) => error)) {
+            console.error("Resend API returned an error:", JSON.stringify(results));
             return errorResponse(502);
         }
-    } catch {
+    } catch (e) {
+        console.error("Resend fetch caught an error:", e);
         return errorResponse(502);
     }
 
