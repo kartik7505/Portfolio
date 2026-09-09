@@ -382,9 +382,9 @@ body:has(.contact-tabs:not([aria-hidden='true'])) .nav__link-wrapper-container::
         resize: vertical;
     }
 
-    button[type='submit'] {
-        align-self: center;
-        margin: auto auto 4rem;
+    button[type='submit'], button[type='button'].contact-action {
+        align-self: flex-start;
+        margin: auto auto 4rem 0;
     }
 }
 
