@@ -621,7 +621,7 @@ export class PortfolioConstellation {
             skill.focusScale * THREE.MathUtils.lerp(1, 1.06, focus),
         );
         if (skill.labelMaterial) {
-            const labelTarget = getSkillLabelOpacityTarget(
+            const labelTarget = this.responsiveConfig.isMobile ? 0 : getSkillLabelOpacityTarget(
                 skill.skill.id,
                 isHovered,
                 this.isProjectPanelBoundaryActive,
