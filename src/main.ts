@@ -267,6 +267,59 @@ try {
     ]);
     createIntroTextAnimation(responsiveConfig);
     initExperienceAnimations(responsiveConfig);
+    
+    // Initialize Horizontal Scroll Animation
+    const textString = "I Help Business Owners Build their Personal Brands.";
+    const textElement = document.getElementById("horizontal-text");
+    const wrapper = document.getElementById("horizontal-wrapper");
+    const sticky = document.getElementById("horizontal-sticky");
+
+    if (textElement && wrapper && sticky) {
+      textElement.innerHTML = textString.split(" ").map(word => 
+        `<span style="display: inline-block; white-space: nowrap;">` + 
+        word.split("").map(char => `<span class="hs-char" style="display: inline-block">${char}</span>`).join("") + 
+        `&nbsp;</span>`
+      ).join("");
+
+      const chars = textElement.querySelectorAll(".hs-char");
+
+      const getPinDistance = () => {
+        const textWidth = textElement.scrollWidth;
+        const viewport = window.innerWidth;
+        return Math.max(textWidth - viewport * 0.1, viewport);
+      };
+
+      const scrollTween = gsap.to(textElement, {
+        xPercent: -110,
+        ease: "none",
+        scrollTrigger: {
+          trigger: sticky,
+          start: "top top",
+          end: () => "+=" + getPinDistance(),
+          scrub: 0.5,
+          pin: sticky,
+          pinSpacing: true,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+        },
+      });
+
+      chars.forEach((char) => {
+        gsap.from(char, {
+          yPercent: gsap.utils.random(-200, 200),
+          rotation: gsap.utils.random(-20, 20),
+          ease: "back.out(1.2)",
+          scrollTrigger: {
+            trigger: char,
+            containerAnimation: scrollTween,
+            start: "left 100%",
+            end: "left 30%",
+            scrub: 1,
+          },
+        });
+      });
+    }
+
     await yieldToMainThread();
 
     const loadContactFeatures = createFeatureLoader('contact interactions', async () => {
