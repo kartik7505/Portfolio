@@ -389,7 +389,7 @@ const getResponsiveConfig = (
             pixelRatioCap: 1.5,
             bloomPixelRatioCap: 1,
             bloomPassStrengthScale: MOBILE_BLOOM_STRENGTH_SCALE,
-            textBloomStrengthScale: 1.5,
+            textBloomStrengthScale: 0.8,
         },
         coloredLight: {
             horizontalScale: isPortrait ? 80 : 100,
