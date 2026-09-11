@@ -871,8 +871,14 @@
 
     <div id="contact-interface" class="contact-tabs" data-contact-tabs inert aria-hidden="true">
         <div class="contact-tabs__panel is-active" id="contact-panel" role="tabpanel" data-panel="contact" style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; max-width: 100%; pointer-events: auto; padding-bottom: 8rem; margin-top: -5vh; z-index: 10;">
-            <p style="font-size: 0.85rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: rgb(255 255 255 / 60%); margin: 0 0 1.5rem 0;">HAVE A PROJECT IN MIND?</p>
-            <h2 style="font-size: clamp(4.5rem, 14vw, 12rem); font-weight: 800; line-height: 0.9; margin: 0; letter-spacing: -0.05em; color: white;">let's talk.</h2>
+            <style>
+                @keyframes waveUpZoom {
+                    0%, 100% { transform: translateY(0) scale(1); }
+                    50% { transform: translateY(-10px) scale(1.05); }
+                }
+            </style>
+            <p style="font-size: 0.85rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: rgb(255 255 255 / 60%); margin: 0 0 1.5rem 0; display: inline-block; animation: waveUpZoom 4s ease-in-out infinite;">HAVE A PROJECT IN MIND?</p>
+            <h2 style="font-size: clamp(4.5rem, 14vw, 12rem); font-weight: 800; line-height: 0.9; margin: 0; letter-spacing: -0.05em; color: white; display: inline-block; animation: waveUpZoom 4s ease-in-out infinite 0.5s;">let's talk.</h2>
             <a href="mailto:kartikkumar.260111071@gehu.ac.in" style="font-size: clamp(1rem, 3vw, 1.3rem); color: rgb(255 255 255 / 90%); text-decoration: underline; text-underline-offset: 0.4em; margin-top: 2.5rem; margin-bottom: 3rem; transition: color 0.2s ease;">kartikkumar.260111071@gehu.ac.in</a>
             <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
                 <a href="mailto:kartikkumar.260111071@gehu.ac.in" style="padding: 1.1rem 2.2rem; border-radius: 999px; background: white; color: black; font-weight: 700; text-decoration: none; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.15em; display: flex; align-items: center; gap: 0.5rem; transition: opacity 0.2s ease;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">SAY HELLO ↗</a>
