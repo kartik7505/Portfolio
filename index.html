@@ -965,6 +965,59 @@
                         </p>
                     </div>
                 </div>
+
+                <style>
+                    .fly-word { display: flex; }
+                    .fly-char { display: inline-block; will-change: transform, opacity; }
+                </style>
+                <div id="fly-in-text-section" style="width: 100%; padding: 15vh 0 5vh 0; overflow: hidden; display: flex; justify-content: center; background: transparent;">
+                    <div id="fly-in-text-content" style="display: flex; flex-wrap: wrap; gap: 1rem; font-family: Urbanist, sans-serif; font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 700; color: white; max-width: 1400px; justify-content: center; letter-spacing: -0.02em;">
+                        <span class="fly-word">
+                            <span class="fly-char">i</span>
+                        </span>
+                        <span class="fly-word">
+                            <span class="fly-char">h</span><span class="fly-char">e</span><span class="fly-char">l</span><span class="fly-char">p</span>
+                        </span>
+                        <span class="fly-word">
+                            <span class="fly-char">b</span><span class="fly-char">u</span><span class="fly-char">s</span><span class="fly-char">i</span><span class="fly-char">n</span><span class="fly-char">e</span><span class="fly-char">s</span><span class="fly-char">s</span>
+                        </span>
+                        <span class="fly-word">
+                            <span class="fly-char">o</span><span class="fly-char">w</span><span class="fly-char">n</span><span class="fly-char">e</span><span class="fly-char">r</span><span class="fly-char">s</span>
+                        </span>
+                        <span class="fly-word">
+                            <span class="fly-char">b</span><span class="fly-char">u</span><span class="fly-char">i</span><span class="fly-char">l</span><span class="fly-char">d</span>
+                        </span>
+                        <span class="fly-word">
+                            <span class="fly-char">t</span><span class="fly-char">h</span><span class="fly-char">e</span><span class="fly-char">i</span><span class="fly-char">r</span>
+                        </span>
+                        <span class="fly-word">
+                            <span class="fly-char">p</span><span class="fly-char">e</span><span class="fly-char"><span style="display: inline-block; transform: translateY(-0.15em);">r</span></span><span class="fly-char">s</span><span class="fly-char"><span style="display: inline-block; transform: translateY(0.15em);">o</span></span><span class="fly-char"><span style="display: inline-block; transform: translateY(-0.1em);">n</span></span><span class="fly-char"><span style="display: inline-block; transform: translateY(-0.2em);">a</span></span><span class="fly-char">l</span>
+                        </span>
+                        <span class="fly-word">
+                            <span class="fly-char"><span style="display: inline-block; transform: translateY(0.1em);">b</span></span><span class="fly-char">r</span><span class="fly-char"><span style="display: inline-block; transform: translateY(-0.15em);">a</span></span><span class="fly-char"><span style="display: inline-block; transform: translateY(0.15em);">n</span></span><span class="fly-char"><span style="display: inline-block; transform: translateY(-0.1em);">d</span></span><span class="fly-char"><span style="display: inline-block; transform: translateY(0.1em);">s</span></span><span class="fly-char">.</span>
+                        </span>
+                    </div>
+                </div>
+
+                <script type="module">
+                    import gsap from 'gsap';
+                    import { ScrollTrigger } from 'gsap/ScrollTrigger';
+                    
+                    gsap.registerPlugin(ScrollTrigger);
+
+                    const chars = document.querySelectorAll('.fly-char');
+                    gsap.from(chars, {
+                        scrollTrigger: {
+                            trigger: '#fly-in-text-section',
+                            start: 'top 85%',
+                        },
+                        x: '50vw',
+                        opacity: 0,
+                        duration: 1.2,
+                        stagger: 0.04,
+                        ease: 'back.out(1.2)'
+                    });
+                </script>
             </section>
 
             <section id="projects"></section>
