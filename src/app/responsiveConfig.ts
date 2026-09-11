@@ -386,7 +386,7 @@ const getResponsiveConfig = (
         reducedMotion,
         ...sharedResponsiveValues,
         renderer: {
-            pixelRatioCap: 1,
+            pixelRatioCap: 1.5,
             bloomPixelRatioCap: 1,
             bloomPassStrengthScale: MOBILE_BLOOM_STRENGTH_SCALE,
             textBloomStrengthScale: 1.5,
@@ -402,10 +402,10 @@ const getResponsiveConfig = (
             colorWindowSize: 2,
         },
         particles: {
-            main: 8000,
-            ambient: 500,
-            floatingText: 1000,
-            ellipsis: 2000,
+            main: 10000,
+            ambient: 800,
+            floatingText: 1200,
+            ellipsis: 2500,
             tunnelRadiusScale: 1.3,
             tunnelBokehSizeScale: mobileTunnelBokehSizeScale,
         },
