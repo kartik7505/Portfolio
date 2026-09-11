@@ -267,7 +267,6 @@ try {
     ]);
     createIntroTextAnimation(responsiveConfig);
     initExperienceAnimations(responsiveConfig);
-
     await yieldToMainThread();
 
     const loadContactFeatures = createFeatureLoader('contact interactions', async () => {
